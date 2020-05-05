@@ -1,0 +1,77 @@
+.icon-button {
+    padding: 5px;
+    cursor: pointer;
+    i {
+        vertical-align: middle;
+    }
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: "datetime head actions" "rec-length head actions";
+    grid-gap: 10px;
+    color: $primary-font-color-dark;
+    margin: 7px;
+    padding: 10px;
+    background-color: $card-color;
+    box-shadow: 3px 3px 3px rgba($color: #000000, $alpha: 0.4);
+    .card-head {
+        grid-area: head;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .card-datetime {
+        grid-area: datetime;
+    }
+    .card-recid {
+        grid-area: rec-id;
+    }
+    .card-length {
+        grid-area: rec-length;
+    }
+    .actions {
+        grid-area: actions;
+        right: 0;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+    }
+    .icon-button {
+        margin-left: 5px;
+        .material-icons {
+            color: $primary-font-color-dark;
+        }
+    }
+}
+
+button {
+    background: none;
+    text-transform: uppercase;
+    border: 1px solid rgba($color: #fff, $alpha: 0.6);
+    border-radius: 4px;
+    color: $primary-font-color-light;
+    padding: 6px 12px;
+    display: inline-block;
+    &:hover {
+        background-color: rgba($color: #000000, $alpha: 0.1);
+    }
+}
+
+input,
+textarea {
+    font-family: "Raleway", sans-serif;
+    background: rgba($color: #fff, $alpha: 0.3);
+    padding: 5px 16px;
+    border: 0;
+    border-radius: 4px 4px 0 0;
+    border-bottom: 1px solid rgba($color: #fff, $alpha: 0.6);
+    color: #f2f2f2;
+    &:hover {
+        background-color: rgba($color: #fff, $alpha: 0.4);
+        border-bottom: 1px solid rgba($color: #fff, $alpha: 0.7);
+    }
+}

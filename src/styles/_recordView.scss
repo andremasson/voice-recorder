@@ -1,0 +1,9 @@
+.records-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .record-element {
+        align-self: center;
+        width: 500px;
+    }
+}

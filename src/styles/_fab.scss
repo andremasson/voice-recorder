@@ -1,0 +1,23 @@
+.fab {
+    background-color: $primary-color;
+    color: $primary-font-color-light;
+    position: fixed;
+    bottom: 45px;
+    right: 65px;
+    width: 3em;
+    height: 3em;
+    font-size: 1em;
+    border-radius: 100px;
+    box-shadow: $default-shadow;
+    margin-left: auto;
+    margin-right: auto;
+    div {
+        height: 100%;
+        display: flex;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    i {
+        margin: auto;
+    }
+}

@@ -1,22 +1,25 @@
 import React from "react";
-import { AppBar, Button, IconButton } from "@material-ui/core";
-import LoginIcon from "@material-ui/icons/AccountCircle";
 
 const NavBar = (props) => {
-  return (
-    <AppBar position="static">
-      <h3 className="title">Gravador</h3>
-      <div className="search-bar">
-        <input type="text" />
-        <Button>Ok</Button>
-      </div>
-      <div className="action-bar">
-        <IconButton>
-          <LoginIcon />
-        </IconButton>
-      </div>
-    </AppBar>
-  );
+    return (
+        <header>
+            <div className="title">
+                <h3>Voice Recorder</h3>
+            </div>
+            <div className="search-bar">
+                <input type="text" placeholder="Buscar..." />
+                <button>Ok</button>
+            </div>{" "}
+            <div className="action-bar">
+                <div className="icon-button">
+                    <i className="material-icons">account_circle</i>
+                </div>
+                <div className="icon-button">
+                    <i className="material-icons">settings</i>
+                </div>
+            </div>
+        </header>
+    );
 };
 
 export default NavBar;

@@ -1,13 +1,11 @@
 import React from "react";
-import { IconButton } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
 
 export const RecordButton = () => {
-  return (
-    <div>
-      <IconButton aria-label="">
-        <AddIcon />
-      </IconButton>
-    </div>
-  );
+    return (
+        <div className="fab">
+            <div className="icon-button">
+                <i className="material-icons"> add </i>
+            </div>
+        </div>
+    );
 };

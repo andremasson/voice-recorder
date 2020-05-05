@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+$primary-color: #00f;
+$primary-font-color-light: #fff;
+$primary-font-color-dark: rgba(#000,
+0.7);
+$secondary-color: #eece1a;
+$show-home-image: true;
+$surface-color: #e8e8e4;
+$card-color: #fff;
+$default-shadow: 2px 2px 4px rgba(#000000,
+0.5);
+$y-shadow: 0px 3px 5px rgba(#000000,
+0.5);
+$background-opacity: 0.9;
+$header-height: 60px;
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: inline-block;
+}
+
+#root {
+    flex-grow: 1;
+    height: 100vh;
+}
+
+body,
+p,
+a,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+// Media query mixins
+@mixin mediaSm {
+    @media screen and (max-width: 500px) {
+        @content;
+    }
+}
+
+@mixin mediaMd {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin mediaLg {
+    @media screen and (min-width: 769px) and (max-width: 1170px) {
+        @content;
+    }
+}
+
+@mixin mediaXl {
+    @media screen and (min-width: 1171px) {
+        @content;
+    }
+}
