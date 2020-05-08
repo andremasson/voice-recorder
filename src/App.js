@@ -5,13 +5,14 @@ import RecordsView from "./components/RecordsView";
 import RecordButton from "./components/RecordButton";
 import {Provider} from "react-redux";
 import store from "./store";
-import {getRecords} from "./actions/record";
+import {getRecords, updateQuery} from "./actions/record";
 import {initStorage} from "./utils/startup";
 
 const App = () => {
     useEffect(() => {
         store.dispatch(getRecords());
         initStorage();
+        store.dispatch(updateQuery(""));
     }, []);
     return (
         <Provider store={store}>
