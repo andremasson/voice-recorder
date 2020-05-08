@@ -1,25 +1,35 @@
 import React from "react";
+import {connect} from "react-redux";
+import {updateQuery} from "../actions/record";
 
-const NavBar = (props) => {
+const NavBar = ({query, updateQuery}) => {
     return (
         <header>
             <div className="title">
-                <h3>Voice Recorder</h3>
-            </div>
+                <h3> Sound Recorder </h3>{" "}
+            </div>{" "}
             <div className="search-bar">
-                <input type="text" placeholder="Buscar..." />
-                <button>Ok</button>
+                <input
+                    type="text"
+                    placeholder="Buscar..."
+                    value={query}
+                    onChange={(e) => updateQuery(e.target.value)}
+                />
             </div>{" "}
             <div className="action-bar">
-                <div className="icon-button">
-                    <i className="material-icons">account_circle</i>
-                </div>
-                <div className="icon-button">
-                    <i className="material-icons">settings</i>
-                </div>
-            </div>
+                <div className="icon-button primary">
+                    <i className="material-icons primary"> account_circle </i>{" "}
+                </div>{" "}
+                <div className="icon-button danger">
+                    <i className="material-icons"> settings </i>{" "}
+                </div>{" "}
+            </div>{" "}
         </header>
     );
 };
 
-export default NavBar;
+const mapStateToProps = ({query}) => ({
+    query,
+});
+
+export default connect(mapStateToProps, {updateQuery})(NavBar);

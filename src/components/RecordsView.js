@@ -9,16 +9,18 @@ const RecordsView = ({record: {records, loading}}) => {
         <Loading />
     ) : (
         <div className="records-list">
-            {records.map((it) => (
-                <RecordElement
-                    key={it._id}
-                    record={{
-                        name: it.name,
-                        timestamp: it.timestamp,
-                        recLength: it.recLength,
-                        id: it._id,
-                    }}></RecordElement>
-            ))}
+            {records &&
+                records.length > 0 &&
+                records.map((record) => (
+                    <RecordElement
+                        key={record.id}
+                        record={{
+                            name: record.name,
+                            timestamp: record.timestamp,
+                            recLength: record.recLength,
+                            id: record.id,
+                        }}></RecordElement>
+                ))}
         </div>
     );
 };
@@ -28,7 +30,18 @@ RecordsView.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    record: state.record,
+    record:
+        state.record.query === undefined || state.record.query === ""
+            ? state.record
+            : {
+                  ...state.record,
+                  records: state.record.records.filter(
+                      (rec) =>
+                          rec.name
+                              .toUpperCase()
+                              .indexOf(state.record.query.toUpperCase()) >= 0
+                  ),
+              },
 });
 
 export default connect(mapStateToProps)(RecordsView);
