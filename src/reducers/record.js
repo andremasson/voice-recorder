@@ -11,6 +11,7 @@ const initialState = {
     loading: true,
     error: {},
     query: "",
+    lastRecordingIndex: 0,
 };
 
 export default function (state = initialState, action) {

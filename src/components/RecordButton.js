@@ -1,29 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {addRecord} from "../actions/record";
+import React, {useState, Fragment} from "react";
+import NewRecording from "./NewRecording";
 
-const RecordButton = ({addRecord}) => {
-    const AddButton = () => {
-        const record = {
-            id: 0,
-            name: "Novo rec " + new Date().getSeconds().toString(),
-            timestamp: 0,
-            recLength: "1:50",
-        };
-        addRecord(record);
-    };
+const RecordButton = () => {
+    const [modalOpen, setModalOpen] = useState(false);
     return (
-        <div className="fab" onClick={() => AddButton()}>
-            <div className="icon-button">
-                <i className="material-icons"> mic </i>{" "}
-            </div>{" "}
-        </div>
+        <Fragment>
+            {modalOpen ? (
+                <NewRecording cancelAction={() => setModalOpen(false)} />
+            ) : (
+                <div className="fab" onClick={() => setModalOpen(true)}>
+                    <div className="icon-button">
+                        <i className="material-icons"> mic </i>{" "}
+                    </div>{" "}
+                </div>
+            )}
+        </Fragment>
     );
 };
 
-RecordButton.propTypes = {
-    addRecord: PropTypes.func.isRequired,
-};
-
-export default connect(null, {addRecord})(RecordButton);
+export default RecordButton;
