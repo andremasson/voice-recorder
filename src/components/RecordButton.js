@@ -3,10 +3,13 @@ import NewRecording from "./NewRecording";
 
 const RecordButton = () => {
     const [modalOpen, setModalOpen] = useState(false);
+    const stopRecording = () => {
+        setModalOpen(false);
+    };
     return (
         <Fragment>
             {modalOpen ? (
-                <NewRecording cancelAction={() => setModalOpen(false)} />
+                <NewRecording cancelAction={() => stopRecording()} />
             ) : (
                 <div className="fab" onClick={() => setModalOpen(true)}>
                     <div className="icon-button">

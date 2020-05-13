@@ -5,6 +5,7 @@ import {deleteRecord, saveRecord} from "../actions/record";
 import moment from "moment";
 import "moment/locale/pt-br";
 import Dialog from "./Dialog";
+import AudioLib from "../utils/AudioLib";
 
 const RecordElement = ({record, deleteRecord, saveRecord}) => {
     const [displayDialog, setDisplayDialog] = useState(false);
@@ -16,11 +17,15 @@ const RecordElement = ({record, deleteRecord, saveRecord}) => {
     };
     const confirmDeletion = (id) => {
         deleteRecord(id);
+        AudioLib.RemoveRecord(id);
     };
     const onSubmit = (e) => {
         e.preventDefault();
         setEditing(false);
         saveRecord({...record, name});
+    };
+    const onPlayButton = (id) => {
+        AudioLib.Play(id);
     };
     return (
         <div className="record-element card">
@@ -57,7 +62,9 @@ const RecordElement = ({record, deleteRecord, saveRecord}) => {
             </div>
             <div className="card-length">{record.recLength}</div>
             <div className="actions">
-                <div className="icon-button">
+                <div
+                    className="icon-button"
+                    onClick={() => onPlayButton(record.id)}>
                     <i className="material-icons">play_arrow</i>
                 </div>
                 <div
