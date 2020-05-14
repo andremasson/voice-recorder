@@ -6,10 +6,13 @@ import RecordButton from "./components/RecordButton";
 import {Provider} from "react-redux";
 import store from "./store";
 import {getRecords, updateQuery} from "./actions/record";
+import {stopAudio} from "./actions/audio";
 import {initStorage} from "./utils/startup";
+import AudioPlayer from "./components/AudioPlayer";
 
 const App = () => {
     useEffect(() => {
+        store.dispatch(stopAudio());
         store.dispatch(getRecords());
         initStorage();
         store.dispatch(updateQuery(""));
@@ -20,6 +23,7 @@ const App = () => {
                 <NavBar />
                 <main>
                     <RecordsView recordings={[]} />
+                    <AudioPlayer />
                 </main>
                 <RecordButton />
             </Fragment>

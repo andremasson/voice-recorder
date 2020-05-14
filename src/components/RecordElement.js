@@ -6,8 +6,9 @@ import moment from "moment";
 import "moment/locale/pt-br";
 import Dialog from "./Dialog";
 import AudioLib from "../utils/AudioLib";
+import {playAudio} from "../actions/audio";
 
-const RecordElement = ({record, deleteRecord, saveRecord}) => {
+const RecordElement = ({record, deleteRecord, saveRecord, playAudio}) => {
     const [displayDialog, setDisplayDialog] = useState(false);
     const [name, setName] = useState(record.name);
     const [editing, setEditing] = useState(false);
@@ -25,7 +26,7 @@ const RecordElement = ({record, deleteRecord, saveRecord}) => {
         saveRecord({...record, name});
     };
     const onPlayButton = (id) => {
-        AudioLib.Play(id);
+        playAudio(id);
     };
     return (
         <div className="record-element card">
@@ -81,6 +82,9 @@ RecordElement.propTypes = {
     record: PropTypes.object.isRequired,
     deleteRecord: PropTypes.func.isRequired,
     saveRecord: PropTypes.func.isRequired,
+    playAudio: PropTypes.func.isRequired,
 };
 
-export default connect(null, {deleteRecord, saveRecord})(RecordElement);
+export default connect(null, {deleteRecord, saveRecord, playAudio})(
+    RecordElement
+);

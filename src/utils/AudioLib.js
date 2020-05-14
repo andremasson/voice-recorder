@@ -8,8 +8,9 @@ const AudioLib = {
 
 let mediaRecorder = null;
 let audioCtl = null;
+let intervalHandler = null;
 
-AudioLib.StartRecording = (saveId, callBack = null) => {
+AudioLib.StartRecording = (saveId, callback = null) => {
     navigator.mediaDevices.getUserMedia({audio: true}).then(function (stream) {
         let chunks = [];
         let blob = null;
@@ -29,7 +30,7 @@ AudioLib.StartRecording = (saveId, callBack = null) => {
             chunks.push(e.data);
         };
         mediaRecorder.start();
-        if (callBack !== null) callBack();
+        if (callback !== null) callback();
     });
 };
 
@@ -37,20 +38,32 @@ AudioLib.StopRecording = () => {
     if (mediaRecorder !== null) mediaRecorder.stop();
 };
 
-AudioLib.Play = (name) => {
-    const audioURL = localStorage.getItem(name);
+AudioLib.Play = (saveId, onStop = null) => {
+    const audioURL = localStorage.getItem(saveId);
+    if (audioCtl !== null) {
+        AudioLib.Stop();
+    }
     audioCtl = new Audio(audioURL);
     audioCtl.play();
+    if (onStop !== null) {
+        intervalHandler = setInterval(function () {
+            if (audioCtl.ended) onStop();
+        }, 100);
+    }
 };
 
 AudioLib.Stop = () => {
     if (audioCtl !== null) {
-        audioCtl.stop();
+        audioCtl.pause();
+        audioCtl = null;
+    }
+    if (intervalHandler !== null) {
+        clearInterval(intervalHandler);
     }
 };
 
-AudioLib.RemoveRecord = (name) => {
-    localStorage.removeItem(name);
+AudioLib.RemoveRecord = (saveId) => {
+    localStorage.removeItem(saveId);
 };
 
 module.exports = AudioLib;

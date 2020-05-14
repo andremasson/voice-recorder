@@ -29,17 +29,17 @@ RecordsView.propTypes = {
     recordings: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = ({record}) => ({
     record:
-        state.record.query === undefined || state.record.query === ""
-            ? state.record
+        record.query === undefined || record.query === ""
+            ? record
             : {
-                  ...state.record,
-                  records: state.record.records.filter(
+                  ...record,
+                  records: record.records.filter(
                       (rec) =>
                           rec.name
                               .toUpperCase()
-                              .indexOf(state.record.query.toUpperCase()) >= 0
+                              .indexOf(record.query.toUpperCase()) >= 0
                   ),
               },
 });
