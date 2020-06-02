@@ -1,9 +1,9 @@
 import {PLAY_AUDIO, STOP_AUDIO} from "./types";
 
-export const playAudio = (idAudio) => async (dispatch) => {
+export const playAudio = (idAudio, name) => async (dispatch) => {
     dispatch({
         type: PLAY_AUDIO,
-        payload: idAudio,
+        payload: {idAudio, name},
     });
 };
 

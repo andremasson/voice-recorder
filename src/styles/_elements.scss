@@ -6,13 +6,32 @@
     }
 }
 
+.player {
+    @include easeOut;
+    position: fixed;
+    height: 150px;
+    width: 350px;
+    left: 0;
+    right: 0;
+    margin-right: auto;
+    margin-left: auto;
+    .material-icons {
+        font-size: 3em;
+    }
+    &.show {
+        bottom: 1em;
+    }
+    &.close {
+        bottom: -150px;
+    }
+}
+
 .card {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas: "datetime head actions" "rec-length head actions";
     grid-gap: 10px;
     color: $primary-font-color-dark;
-    margin: 7px;
     padding: 10px;
     background-color: $card-color;
     box-shadow: $default-shadow;

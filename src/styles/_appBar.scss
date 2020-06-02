@@ -1,0 +1,41 @@
+header {
+    background-color: $primary-color;
+    color: $primary-font-color-light;
+    padding: 0 20px 0 20px;
+    height: $header-height;
+    display: grid;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: $y-shadow;
+    div {
+        text-align: center;
+        vertical-align: middle;
+        align-self: center;
+    }
+    div:first-child {
+        text-align: left;
+        text-transform: uppercase;
+    }
+    div:last-child {
+        text-align: right;
+    }
+    .action-bar {
+        div {
+            margin-left: 1rem;
+        }
+    }
+    input {
+        margin-right: 10px;
+    }
+    .search-bar {
+        display: flex;
+         :first-child {
+            flex-grow: 8;
+        }
+         :last-child {
+            flex-grow: 2;
+        }
+    }
+}

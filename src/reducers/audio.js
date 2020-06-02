@@ -4,6 +4,7 @@ const initialState = {
     isPlaying: false,
     error: {},
     idAudio: "",
+    name: "",
 };
 
 export default function (state = initialState, action) {
@@ -14,7 +15,8 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 isPlaying: true,
-                idAudio: payload,
+                idAudio: payload.idAudio,
+                name: payload.name,
             };
         case STOP_AUDIO:
             return {

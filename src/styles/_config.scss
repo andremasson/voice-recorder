@@ -19,6 +19,10 @@ $y-shadow: 0px 4px 4px rgba(0,
 0.25);
 $background-opacity: 0.9;
 $header-height: 60px;
+@mixin easeOut {
+    transition: all 0.5s ease-out;
+}
+
 * {
     box-sizing: border-box;
 }

@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, {useEffect} from "react";
 import "./styles/App.scss";
 import NavBar from "./components/NavBar";
 import RecordsView from "./components/RecordsView";
@@ -9,6 +9,7 @@ import {getRecords, updateQuery} from "./actions/record";
 import {stopAudio} from "./actions/audio";
 import {initStorage} from "./utils/startup";
 import AudioPlayer from "./components/AudioPlayer";
+import MenuBar from "./components/MenuBar";
 
 const App = () => {
     useEffect(() => {
@@ -19,14 +20,13 @@ const App = () => {
     }, []);
     return (
         <Provider store={store}>
-            <Fragment>
-                <NavBar />
-                <main>
-                    <RecordsView recordings={[]} />
-                    <AudioPlayer />
-                </main>
+            <NavBar />
+            <main>
+                <RecordsView recordings={[]} />
+                <MenuBar />
+                <AudioPlayer />
                 <RecordButton />
-            </Fragment>
+            </main>
         </Provider>
     );
 };

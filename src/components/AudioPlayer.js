@@ -21,17 +21,12 @@ const AudioPlayer = ({audio, stopAudio}) => {
         stopAudio();
     };
     return (
-        <div>
-            {isPlaying ? (
-                <div>
-                    <div>Playing...</div>
-                    <div className="icon-button" onClick={() => stopButton()}>
-                        <i className="material-icons">stop</i>
-                    </div>
-                </div>
-            ) : (
-                <div>Stopped</div>
-            )}
+        <div className={`card player ${isPlaying ? "show" : "close"}`}>
+            <div>{isPlaying ? "Playing..." : "Stopped"}</div>
+            <div>{audio.name}</div>
+            <div className="icon-button" onClick={() => stopButton()}>
+                <i className="material-icons">stop</i>
+            </div>
         </div>
     );
 };

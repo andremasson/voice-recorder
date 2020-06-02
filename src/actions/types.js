@@ -6,3 +6,6 @@ export const UPDATE_QUERY = "UPDATE_QUERY";
 
 export const PLAY_AUDIO = "PLAY_AUDIO";
 export const STOP_AUDIO = "STOP_AUDIO";
+
+export const OPEN_MENU = "OPEN_MENU";
+export const CLOSE_MENU = "CLOSE_MENU";

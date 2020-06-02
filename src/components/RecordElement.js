@@ -16,24 +16,27 @@ const RecordElement = ({record, deleteRecord, saveRecord, playAudio}) => {
     const deleteButton = () => {
         setDisplayDialog(true);
     };
-    const confirmDeletion = (id) => {
-        deleteRecord(id);
-        AudioLib.RemoveRecord(id);
+    const confirmDeletion = () => {
+        deleteRecord(record.id);
+        AudioLib.RemoveRecord(record.id);
     };
     const onSubmit = (e) => {
         e.preventDefault();
         setEditing(false);
         saveRecord({...record, name});
     };
-    const onPlayButton = (id) => {
-        playAudio(id);
+    const onPlayButton = () => {
+        playAudio(record.id, name);
+    };
+    const onDownloadButton = () => {
+        AudioLib.Download(record.id, name);
     };
     return (
         <div className="record-element card">
             {displayDialog ? (
                 <Dialog
                     message={`Excluir permanentemente "${record.name.toUpperCase()}"?`}
-                    positiveAction={() => confirmDeletion(record.id)}
+                    positiveAction={() => confirmDeletion()}
                     cancelAction={() => setDisplayDialog(false)}
                 />
             ) : (
@@ -63,14 +66,13 @@ const RecordElement = ({record, deleteRecord, saveRecord, playAudio}) => {
             </div>
             <div className="card-length">{record.recLength}</div>
             <div className="actions">
-                <div
-                    className="icon-button"
-                    onClick={() => onPlayButton(record.id)}>
+                <div className="icon-button" onClick={() => onPlayButton()}>
                     <i className="material-icons">play_arrow</i>
                 </div>
-                <div
-                    className="icon-button"
-                    onClick={() => deleteButton(record.id)}>
+                <div className="icon-button" onClick={() => onDownloadButton()}>
+                    <i className="material-icons">get_app</i>
+                </div>
+                <div className="icon-button" onClick={() => deleteButton()}>
                     <i className="material-icons">delete</i>
                 </div>
             </div>
