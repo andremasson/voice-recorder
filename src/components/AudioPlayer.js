@@ -11,12 +11,12 @@ const AudioPlayer = ({audio, stopAudio}) => {
         const onStop = () => {
             stopAudio();
         };
-        if (audio.isPlaying) {
+        if (isPlaying) {
             audioLib.Play(idAudio, () => onStop());
         } else {
             audioLib.Stop();
         }
-    }, [audio.isPlaying, idAudio, stopAudio, audioLib]);
+    }, [isPlaying, idAudio, stopAudio, audioLib]);
     const stopButton = () => {
         stopAudio();
     };

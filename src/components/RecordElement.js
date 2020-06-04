@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {deleteRecord, saveRecord} from "../actions/record";
@@ -6,12 +6,25 @@ import moment from "moment";
 import "moment/locale/pt-br";
 import Dialog from "./Dialog";
 import AudioLib from "../utils/AudioLib";
-import {playAudio} from "../actions/audio";
+import {playAudio, stopAudio} from "../actions/audio";
 
-const RecordElement = ({record, deleteRecord, saveRecord, playAudio}) => {
+const RecordElement = ({
+    record,
+    deleteRecord,
+    saveRecord,
+    playAudio,
+    stopAudio,
+}) => {
     const [displayDialog, setDisplayDialog] = useState(false);
     const [name, setName] = useState(record.name);
     const [editing, setEditing] = useState(false);
+    const [audioUrl, setAudioUrl] = useState(null);
+
+    useEffect(() => {
+        AudioLib.GetDataURL(record.id, function (dataUrl) {
+            setAudioUrl(dataUrl);
+        });
+    }, [record]);
 
     const deleteButton = () => {
         setDisplayDialog(true);
@@ -60,6 +73,11 @@ const RecordElement = ({record, deleteRecord, saveRecord, playAudio}) => {
                         <span>{record.name}</span>{" "}
                     </div>
                 )}
+                {audioUrl !== undefined && audioUrl !== null && (
+                    <audio id={`HTMLMediaElementPlayer_${record.id}`}>
+                        <source src={audioUrl} type="audio/webm"></source>
+                    </audio>
+                )}
             </div>
             <div className="card-datetime">
                 {moment(record.timestamp).format("L - LT")}
@@ -85,8 +103,9 @@ RecordElement.propTypes = {
     deleteRecord: PropTypes.func.isRequired,
     saveRecord: PropTypes.func.isRequired,
     playAudio: PropTypes.func.isRequired,
+    stopAudio: PropTypes.func.isRequired,
 };
 
-export default connect(null, {deleteRecord, saveRecord, playAudio})(
+export default connect(null, {deleteRecord, saveRecord, playAudio, stopAudio})(
     RecordElement
 );

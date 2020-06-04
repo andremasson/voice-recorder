@@ -3,13 +3,14 @@ import {SaveData, GetData, DeleteData} from "./Storage";
 const AudioLib = {
     StartRecording: null,
     StopRecording: null,
+    GetDataURL: null,
     Play: null,
     Stop: null,
     RemoveRecord: null,
     Download: null,
 };
 
-const mimeType = "audio/ogg;codecs=opus";
+const mimeType = "audio/webm;codecs=opus";
 
 let mediaRecorder = null;
 let audioCtl = null;
@@ -45,21 +46,47 @@ AudioLib.StopRecording = () => {
     if (mediaRecorder !== null) mediaRecorder.stop();
 };
 
+AudioLib.GetDataURL = (saveId, callback = null) => {
+    GetData(saveId, (data) => {
+        if (data !== undefined) {
+            const file = new File([data.audio_file], {type: mimeType});
+            let fileReader = new FileReader();
+            fileReader.onload = function (readData) {
+                if (callback !== null) {
+                    callback(readData.target.result);
+                }
+            };
+            fileReader.readAsDataURL(file);
+        }
+    });
+};
+
 AudioLib.Play = (saveId, onStop = null) => {
     if (audioCtl !== null) {
         AudioLib.Stop();
     }
+    if (intervalHandler !== null) {
+        clearInterval(intervalHandler);
+    }
     GetData(saveId, (data) => {
         const file = new File([data.audio_file], {type: mimeType});
         let fileReader = new FileReader();
-        fileReader.onload = function (data) {
-            audioCtl = new Audio(data.target.result);
+        fileReader.onload = function (readData) {
+            audioCtl = document.createElement("audio");
+            let source = document.createElement("source");
+            source.src = readData.target.result;
+            source.type = mimeType;
+            audioCtl.appendChild(source);
+            document.body.appendChild(audioCtl);
             audioCtl.play();
-            if (onStop !== null) {
-                intervalHandler = setInterval(function () {
-                    if (audioCtl.ended) onStop();
-                }, 100);
-            }
+
+            intervalHandler = setInterval(function () {
+                if (audioCtl && audioCtl.ended) {
+                    if (onStop !== null) onStop();
+                    audioCtl = null;
+                    clearInterval(intervalHandler);
+                }
+            }, 100);
         };
         fileReader.readAsDataURL(file);
     });
@@ -68,6 +95,7 @@ AudioLib.Play = (saveId, onStop = null) => {
 AudioLib.Stop = () => {
     if (audioCtl !== null) {
         audioCtl.pause();
+        audioCtl.load();
         audioCtl = null;
     }
     if (intervalHandler !== null) {
@@ -81,8 +109,7 @@ AudioLib.RemoveRecord = (saveId) => {
 };
 
 AudioLib.Download = (saveId, name = "audio") => {
-    const filename = name;
-    const audioContent = localStorage.getItem(saveId);
+    const filename = name + ".webm";
 
     if (audioCtl !== null) {
         AudioLib.Stop();

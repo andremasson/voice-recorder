@@ -9,6 +9,7 @@ const RecordsView = ({record: {records, loading}}) => {
         <Loading />
     ) : (
         <div className="records-list">
+            <div id="audio"></div>
             {records &&
                 records.length > 0 &&
                 records.map((record) => (

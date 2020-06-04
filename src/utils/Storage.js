@@ -23,23 +23,26 @@ var request = window.indexedDB.open(dbName, dbVersion);
 export const SaveData = (data) => {
     var transaction = db.transaction(storeName, "readwrite");
     transaction.oncomplete = function (event) {
-        console.log("All done!");
+        // Success
     };
 
     var objectStore = transaction.objectStore(storeName);
     var req = objectStore.add(data);
     req.onsuccess = function (event) {
-        console.log("Data salvo!");
+        // Success
     };
 };
 
 export const GetData = (saveId, func) => {
-    var transaction = db.transaction(storeName);
-    var objectStore = transaction.objectStore(storeName);
-    var req = objectStore.get(saveId);
-    req.onsuccess = function (event) {
-        func(req.result);
-    };
+    if (saveId === undefined) return;
+    if (db !== undefined) {
+        var transaction = db.transaction(storeName);
+        var objectStore = transaction.objectStore(storeName);
+        var req = objectStore.get(saveId);
+        req.onsuccess = function (event) {
+            func(req.result);
+        };
+    }
 };
 
 export const DeleteData = (saveId) => {
@@ -59,10 +62,10 @@ request.onerror = function (event) {
 };
 
 request.onsuccess = function (event) {
-    console.log("Success creating/accessing IndexedDB");
+    // Success
     db = event.target.result;
 
     db.onerror = function (event) {
-        console.log("Error creating/accessing IndexedDB");
+        // Handle error
     };
 };

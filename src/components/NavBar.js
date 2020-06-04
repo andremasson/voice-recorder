@@ -6,7 +6,7 @@ const NavBar = ({query, updateQuery}) => {
     return (
         <header>
             <div className="title">
-                <h3>Audio Recorder</h3>{" "}
+                <h3>Gravaudio</h3>{" "}
             </div>{" "}
             <div className="search-bar">
                 <input
