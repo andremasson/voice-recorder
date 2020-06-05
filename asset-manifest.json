@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/gravaudio/static/css/main.c666ba74.chunk.css",
-    "main.js": "/gravaudio/static/js/main.88ce26b2.chunk.js",
-    "main.js.map": "/gravaudio/static/js/main.88ce26b2.chunk.js.map",
-    "runtime-main.js": "/gravaudio/static/js/runtime-main.d287372c.js",
-    "runtime-main.js.map": "/gravaudio/static/js/runtime-main.d287372c.js.map",
-    "static/js/2.9b699556.chunk.js": "/gravaudio/static/js/2.9b699556.chunk.js",
-    "static/js/2.9b699556.chunk.js.map": "/gravaudio/static/js/2.9b699556.chunk.js.map",
-    "index.html": "/gravaudio/index.html",
-    "precache-manifest.38cb5c6bd1eac6a5c31cf40892fc2c30.js": "/gravaudio/precache-manifest.38cb5c6bd1eac6a5c31cf40892fc2c30.js",
-    "service-worker.js": "/gravaudio/service-worker.js",
-    "static/css/main.c666ba74.chunk.css.map": "/gravaudio/static/css/main.c666ba74.chunk.css.map",
-    "static/js/2.9b699556.chunk.js.LICENSE.txt": "/gravaudio/static/js/2.9b699556.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.c666ba74.chunk.css",
+    "main.js": "/static/js/main.88ce26b2.chunk.js",
+    "main.js.map": "/static/js/main.88ce26b2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.fad94752.js",
+    "runtime-main.js.map": "/static/js/runtime-main.fad94752.js.map",
+    "static/js/2.9b699556.chunk.js": "/static/js/2.9b699556.chunk.js",
+    "static/js/2.9b699556.chunk.js.map": "/static/js/2.9b699556.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.7168f63240143147860bd8d3693fd57e.js": "/precache-manifest.7168f63240143147860bd8d3693fd57e.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.c666ba74.chunk.css.map": "/static/css/main.c666ba74.chunk.css.map",
+    "static/js/2.9b699556.chunk.js.LICENSE.txt": "/static/js/2.9b699556.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d287372c.js",
+    "static/js/runtime-main.fad94752.js",
     "static/js/2.9b699556.chunk.js",
     "static/css/main.c666ba74.chunk.css",
     "static/js/main.88ce26b2.chunk.js"
