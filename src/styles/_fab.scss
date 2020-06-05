@@ -21,3 +21,17 @@
         margin: auto;
     }
 }
+
+@include mediaSm {
+    .fab {
+        bottom: 7vh;
+        align-self: center;
+        left: auto;
+        right: auto;
+        width: 3.5em;
+        height: 3.5em;
+        i {
+            font-size: xx-large;
+        }
+    }
+}

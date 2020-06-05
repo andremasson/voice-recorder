@@ -1,10 +1,42 @@
 .records-list {
+    padding-bottom: inherit;
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+@include mediaSm {
+    .records-list {
+        width: 95vw;
+        overflow-x: hidden;
+    }
+    .record-element {
+        align-self: center;
+        margin: 7px;
+        width: 100vw;
+    }
+}
+
+@include mediaMd {
+    .record-element {
+        align-self: center;
+        margin: 7px;
+        width: 85vw;
+    }
+}
+
+@include mediaLg {
     .record-element {
         align-self: center;
         margin: 7px;
         width: 500px;
+    }
+}
+
+@include mediaXl {
+    .record-element {
+        align-self: center;
+        margin: 7px;
+        width: 800px;
     }
 }

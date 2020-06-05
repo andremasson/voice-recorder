@@ -1,4 +1,5 @@
 header {
+    justify-content: space-between;
     background-color: $primary-color;
     color: $primary-font-color-light;
     padding: 0 20px 0 20px;
@@ -14,14 +15,12 @@ header {
         vertical-align: middle;
         align-self: center;
     }
-    div:first-child {
+    .title {
         text-align: left;
         text-transform: uppercase;
     }
-    div:last-child {
-        text-align: right;
-    }
     .action-bar {
+        text-align: right;
         div {
             margin-left: 1rem;
         }
@@ -31,11 +30,48 @@ header {
     }
     .search-bar {
         display: flex;
-         :first-child {
-            flex-grow: 8;
+        input {
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            &::placeholder {
+                opacity: 1;
+                color: $primary-font-color-light;
+            }
         }
-         :last-child {
-            flex-grow: 2;
+    }
+}
+
+@include mediaSm {
+    header {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: "searchbar searchbar actions";
+        .title {
+            display: none;
         }
+        .search-bar {
+            grid-area: searchbar;
+        }
+        .action-bar {
+            grid-area: actions;
+        }
+    }
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    height: 40px;
+    background-color: rgba($color: #000000, $alpha: 0.8);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: fixed;
+    top: 10px;
+    right: 15px;
+    z-index: 1;
+    &.show {
+        visibility: visible;
     }
 }

@@ -48,12 +48,14 @@
         }
     }
     .card-datetime {
+        text-align: left;
         grid-area: datetime;
     }
     .card-recid {
         grid-area: rec-id;
     }
     .card-length {
+        text-align: left;
         grid-area: rec-length;
     }
     .actions {
@@ -71,10 +73,40 @@
     }
     .cardEdit {
         color: $primary-font-color-dark;
-        border-bottom: 1px solid rgba($color: #000, $alpha: 0.6);
         border-bottom: 1px solid rgba($color: #000, $alpha: 0.7);
         text-transform: uppercase;
         font-weight: bold;
+    }
+}
+
+@include mediaSm {
+    .card {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas: "head datetime" "actions rec-length";
+        grid-gap: 10px;
+        color: $primary-font-color-dark;
+        padding: 10px;
+        background-color: $card-color;
+        box-shadow: $default-shadow;
+        .card-head {
+            justify-content: left;
+            align-items: left;
+            span {
+                display: block;
+                text-align: left;
+            }
+        }
+        .card-datetime {
+            text-align: right;
+        }
+        .card-length {
+            text-align: right;
+        }
+        .actions {
+            justify-content: left;
+            align-items: left;
+        }
     }
 }
 
@@ -125,17 +157,19 @@ textarea {
     justify-content: center;
     align-items: center;
     .dialog {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-areas: "title" "message" "actions";
-        .title {
-            grid-area: title;
-        }
+        display: inline-flex;
+        flex-direction: column;
+        width: 250px;
         .message {
-            grid-area: message;
+            margin-right: 0;
+            margin-left: 0;
         }
         .actions {
-            grid-area: actions;
+            margin-top: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+            display: flex;
+            justify-content: space-evenly;
             button {
                 background: $primary-color;
                 text-transform: uppercase;
@@ -144,8 +178,8 @@ textarea {
                 color: $primary-font-color-light;
                 padding: 6px 12px;
                 display: inline-block;
-                &:hover {
-                    background-color: rgba($color: #000000, $alpha: 0.1);
+                &.danger {
+                    background: red;
                 }
             }
         }

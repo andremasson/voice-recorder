@@ -9,7 +9,6 @@ import {getRecords, updateQuery} from "./actions/record";
 import {stopAudio} from "./actions/audio";
 import {initStorage} from "./utils/startup";
 import AudioPlayer from "./components/AudioPlayer";
-import MenuBar from "./components/MenuBar";
 
 const App = () => {
     useEffect(() => {
@@ -23,7 +22,6 @@ const App = () => {
             <NavBar />
             <main>
                 <RecordsView recordings={[]} />
-                <MenuBar />
                 <AudioPlayer />
                 <RecordButton />
             </main>

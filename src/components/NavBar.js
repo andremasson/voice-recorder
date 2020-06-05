@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import {updateQuery} from "../actions/record";
 
 const NavBar = ({query, updateQuery}) => {
+    const [visible, setVisible] = useState("");
     return (
         <header>
             <div className="title">
@@ -17,13 +18,22 @@ const NavBar = ({query, updateQuery}) => {
                 />
             </div>{" "}
             <div className="action-bar">
-                <div className="icon-button primary">
+                <div
+                    className="icon-button primary"
+                    onClick={() => setVisible("show")}>
                     <i className="material-icons primary"> account_circle </i>{" "}
                 </div>{" "}
-                <div className="icon-button danger">
+                <div
+                    className="icon-button danger"
+                    onClick={() => setVisible("show")}>
                     <i className="material-icons"> settings </i>{" "}
                 </div>{" "}
             </div>{" "}
+            <span
+                className={`tooltip ${visible}`}
+                onClick={() => setVisible("")}>
+                Em breve...
+            </span>
         </header>
     );
 };
