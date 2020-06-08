@@ -25,9 +25,21 @@
 @include mediaSm {
     .fab {
         bottom: 7vh;
-        align-self: center;
-        left: auto;
         right: auto;
+        left: auto;
+        width: 3.5em;
+        height: 3.5em;
+        i {
+            font-size: xx-large;
+        }
+    }
+}
+
+@include mediaMd {
+    .fab {
+        bottom: 7vh;
+        right: auto;
+        left: auto;
         width: 3.5em;
         height: 3.5em;
         i {
